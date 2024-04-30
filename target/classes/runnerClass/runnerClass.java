@@ -13,7 +13,7 @@ import io.cucumber.testng.CucumberOptions;
 		monochrome = true)
 
 public class runnerClass extends AbstractTestNGCucumberTests{
-	 public Object[][] scenarios() {
+	 public void scenarios() {
         
     }
 }

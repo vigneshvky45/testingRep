@@ -1,6 +1,9 @@
 Feature: Test simple web launch
 
-@FULL-CSM
+Background:
+Given I am logged in as "vignesh"
+
+@smoke
 Scenario: Verify to launch simple site
 Given I am logged in as "vignesh"
 Then I will see "Home"
@@ -12,6 +15,7 @@ And I impersonateAs "AAAStudent"
 #And I click "AAAStudent" Link
 #And I open "Login As" tab
 
+@reg
 Scenario: Verify to launch simple site with home
 Given I am logged in as "Manager_Home"
 Then I will see "Home"
@@ -23,6 +27,7 @@ And I impersonateAs "AAAStudent"
 #And I click "AAAStudent" Link
 #And I open "Login As" tab
 
+@reg
 Scenario: Verify to launch simple site with manager
 Given I am logged in as "Manager"
 Then I will see "Home"
