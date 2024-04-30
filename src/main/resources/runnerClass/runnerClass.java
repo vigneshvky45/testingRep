@@ -8,12 +8,12 @@ import io.cucumber.testng.CucumberOptions;
 		features = {src/test/java/Features},
 		dryRun = false,
 		glue = "Steps",
+		tags = "FULL-CSM";
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true)
 
 public class runnerClass extends AbstractTestNGCucumberTests{
-	@DataProvider
-	public void getTestData() {
-		
-	}
+	 public void scenarios() {
+        
+    }
 }
