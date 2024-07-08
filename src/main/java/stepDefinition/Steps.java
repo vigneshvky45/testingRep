@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
-import stepDefinition.Product;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -32,32 +30,17 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-	
+
 public class Steps {
-	
+
 	WebDriver driver;
 	WebDriverWait wait;
-	
-//	@Before
-//	public void siteLaunch()
-//	{
-//		driver = new ChromeDriver();
-//		driver.navigate().to("https://sanity-csm.test8.symplicity.com/manager");
-//		driver.manage().window().maximize();
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//	}
-//	
-//	@After
-//	public void close() throws InterruptedException
-//	{
-//		Thread.sleep(3000);
-//		driver.close();
-//	}
+
 	@Before
 	public void siteLaunch() throws FileNotFoundException
 	{
 		Properties prop = new Properties();
-		FileReader reader=new FileReader("C:\\Users\\Vignesh.ramanathan\\eclipse-workspace\\NewEclipse\\testingRep\\src\\main\\java\\stepDefinition\\myFile.properties");
+		FileReader reader=new FileReader("src\\main\\java\\stepDefinition\\myFile.properties");
 		try {
 			prop.load(reader);
 		} catch (IOException e) {
@@ -65,19 +48,18 @@ public class Steps {
 			e.printStackTrace();
 		}
 		driver = new ChromeDriver();
-		System.out.println(prop.getProperty("URL","https://ultimateqa.com/automation/"));
-		driver.navigate().to(prop.getProperty("URL","https://ultimateqa.com/automation/"));
+		driver.navigate().to(prop.getProperty("URL"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
-	
+
 	@After
 	public void close() throws InterruptedException
 	{
 		Thread.sleep(3000);
 		driver.close();
 	}
-	
+
 	@Given("/^I fill fields$/")
 	public void dataTable(DataTable table)
 	{
@@ -100,105 +82,22 @@ public class Steps {
 			}
 		}
 	}
-	
+
 	@When("I click {string} button")
 	public void iClickButton(String button)
 	{
 		driver.findElement(By.xpath("//button[@type='submit' and normalize-space(text())='"+button+"']")).click();
 	}
-	
-	@Given("I am logged in as {string}")
-	public void login(String user) 
+
+	@When("I click {string} link")
+	public void clickByLink(String link) throws Exception
 	{
-		String username = "";
-		String password = "iopex@123";
-		if(user == "vignesh") {
-			username = "vramanathan@sympdebug";
-			password = "Vkyking@123a";
-		} else if (user == "Manager_Home"){
-			username = "home@iopexadmin.com";
-		} else {
-			username = "testmanager@iopexadmin.com";
+		WebElement linkElement = driver.findElement(By.linkText(link));
+		try {
+			linkElement.click();
+		} catch (Exception $e) {
+			throw new Exception("The link is not clickable");
 		}
-		driver.findElement(By.xpath("//input[@class='input-text' and @name='username']")).sendKeys(username);
-		driver.findElement(By.xpath("//input[@class='input-password' and @name='password']")).sendKeys(password);
-		driver.findElement(By.xpath("//input[@type='submit' and @value='Sign In']")).click();
 	}
 
-	@Then("I will see {string}")
-	public void iWillSee(String text) 
-	{
-		WebElement textByXapth = driver.findElement(By.xpath("//*[text()='"+text+"']"));
-		String actual = "";
-		try {
-			actual = textByXapth.getText();
-		} catch(Exception $e) {
-			wait.until(ExpectedConditions.visibilityOf(textByXapth));
-			actual = textByXapth.getText();
-		}
-		if (text.equalsIgnoreCase(actual)) {
-			System.out.println(actual);
-		}
-	}
-	
-	@When("I navigate to {string}")
-	public void iNavigateTo(String path)
-	{
-		String navMenu[] = path.split(">");
-		WebElement mainMenu = driver.findElement(By.xpath("//a[@title='Students']//i[@id='toggler_"+navMenu[0].toLowerCase()+"']"));
-		mainMenu.click();
-//		WebElement subMenu = driver.findElement(By.xpath("//a[@class='navitem hi no-children']//span[@class='navtext' and text()='"+navMenu[1]+"']"));
-//		try {
-//			subMenu.click();
-//		} catch(Exception $e) {
-//			wait.until(ExpectedConditions.elementToBeClickable(subMenu));
-//			subMenu.click();
-//		}
-	}
-	
-	@And("I search with {string}")
-	public void searchWith(String value) 
-	{
-		WebElement keywordFilter =  driver.findElement(By.xpath("//input[@id='studentfilters_keywords_' and @type='text']"));
-		keywordFilter.clear();
-		keywordFilter.sendKeys(value);
-		driver.findElement(By.xpath("//input [@type='submit' and @value='apply search']")).click();
-	}
-	
-	@And("I click {string} Link")
-	public void clickLink(String link) throws Exception
-	{
-		WebElement ele = driver.findElement(By.linkText(link));
-		try {
-			ele.click();
-		} catch (ElementNotInteractableException e) {
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].scrollIntoView();", ele);
-		} catch (NoSuchElementException e) {
-			throw new Exception(e);
-		} catch (Exception e) {
-			throw new Exception(e);
-		}
-	}
-	
-	@And("I open {string} tab")
-	public void iOpenTab(String tab)
-	{
-		WebElement element = driver.findElement(By.xpath("//div[@class='tab_text' and normalize-space(text())='"+tab+"']"));
-		try {
-			element.click();
-		} catch (ElementNotInteractableException e) {
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].scrollIntoView();", element);
-		}
-	}
-	
-	@And("I impersonateAs {string}")
-	public void iImpersonateAs(String user) throws Exception
-	{
-		this.clickLink(user);
-		this.iOpenTab("Login As");
-		driver.switchTo().frame("loginas_frame");
-		this.clickLink("Open in a separate window");
-	}
 }
