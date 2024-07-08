@@ -1,7 +1,4 @@
-Feature: New item testing
+Feature: Sample feature
 
-Scenario: Open google 
-Given lanching the brower
-When open the google
-And I type "selenium" in textbox
-Then I will see "Selenium"
+Scenario: sample scenario 
+When I click "Interactions with simple elements" link
