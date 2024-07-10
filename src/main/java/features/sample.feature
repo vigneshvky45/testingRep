@@ -5,3 +5,6 @@ When I click "Interactions with simple elements" link
 
 Scenario: sample scenario2
 When I click "Interactions with simple elements" link
+
+Scenario: sample scenario3
+When I click "Interactions with simple elements" link
