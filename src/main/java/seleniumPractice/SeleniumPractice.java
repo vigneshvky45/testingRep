@@ -3,11 +3,14 @@ package seleniumPractice;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.time.Duration;
-import java.util.Base64;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -15,15 +18,21 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
 
 public class SeleniumPractice {
-	
+
 	WebDriver driver;
+	RemoteWebDriver driver1;
 	WebDriverWait wait;
-	
+
 	public long takeSnap(){
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
 		try {
@@ -36,7 +45,7 @@ public class SeleniumPractice {
 		}
 		return number;
 	}
-	
+
 	public void takeSnaponElement(WebElement ele) throws IOException{
 		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L; 
 		try {
@@ -49,33 +58,43 @@ public class SeleniumPractice {
 			System.out.println("The browser has been closed.");
 		}
 	}
-	
+
 	public void login()
 	{
 		driver = new ChromeDriver();
-		driver.navigate().to("https://ultimateqa.com/automation");
+		driver.navigate().to("https://www.google.com");
+		driver.switchTo().newWindow(WindowType.TAB);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
-	
+
 	public void quit() throws InterruptedException
 	{
 		Thread.sleep(3000);
 		driver.quit();
 	}
-	
+
+	public void googleShadowRoot()
+	{
+		WebElement shadowHost = driver.findElement(By.xpath("//cr-iconset[@name='cr20']"));
+
+		if (!shadowHost.isEnabled()) {
+			System.out.println("not exist");
+		}
+	}
+
 	public void clickByLink(String link) throws IOException
 	{
 		WebElement linkElement = driver.findElement(By.linkText(link));
 		this.takeSnaponElement(linkElement);
 		try {
-		linkElement.click();
-		this.takeSnap();
+			linkElement.click();
+			this.takeSnap();
 		} catch (Exception $e) {
 			this.takeSnap();
 		}
 	}
-	
+
 	public void selectByIndex(int index, String selected)
 	{
 		Select se = new Select(driver.findElement(By.xpath("//select")));
@@ -86,7 +105,7 @@ public class SeleniumPractice {
 			this.takeSnap();
 		} 
 	}
-	
+
 	public void getTextFromDroplist()
 	{
 		Select se = new Select(driver.findElement(By.xpath("//select")));
@@ -95,13 +114,9 @@ public class SeleniumPractice {
 	}
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		
-		SeleniumPractice qa = new SeleniumPractice();
-		qa.login();
-		qa.clickByLink("Interactions with simple elements");
-		qa.selectByIndex(0,"Volvo");
-//		qa.getTextFromDroplist();
-		qa.quit();
-	}
 
+
+	}
 }
+
+
