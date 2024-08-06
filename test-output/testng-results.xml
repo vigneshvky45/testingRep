@@ -1,100 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-07-04T16:28:14 IST" name="Default suite" finished-at="2024-07-04T16:28:29 IST" duration-ms="14754">
+  <suite started-at="2024-08-03T22:46:20 IST" name="Default suite" finished-at="2024-08-03T22:46:29 IST" duration-ms="8341">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runnerClass.runner@5890e879]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runnerClass.runner@6c4906d3]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-07-04T16:28:14 IST" name="Default test" finished-at="2024-07-04T16:28:29 IST" duration-ms="14754">
+    <test started-at="2024-08-03T22:46:20 IST" name="Default test" finished-at="2024-08-03T22:46:29 IST" duration-ms="8341">
       <class name="runnerClass.runner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runnerClass.runner@5890e879]" started-at="2024-07-04T16:28:14 IST" name="setUpClass" finished-at="2024-07-04T16:28:14 IST" duration-ms="290" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runnerClass.runner@6c4906d3]" started-at="2024-08-03T22:46:20 IST" name="setUpClass" finished-at="2024-08-03T22:46:21 IST" duration-ms="471" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@23592946]]>
+                <![CDATA[org.testng.TestRunner@40d10481]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runnerClass.runner@5890e879]" started-at="2024-07-04T16:28:14 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-07-04T16:28:29 IST" duration-ms="14396" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runnerClass.runner@6c4906d3]" started-at="2024-08-03T22:46:21 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-08-03T22:46:28 IST" duration-ms="7548" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA["sample scenario"]]>
+                <![CDATA["Placing the sample order to specific location"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Sample feature"]]>
+                <![CDATA["Buy products and validating cart"]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.Exception">
+            <message>
+              <![CDATA[Expected text Total : 130 but actual text is 120]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Exception: Expected text Total : 130 but actual text is 120
+at stepDefinition.Greenkart_StepDefinition.iVerifyOrders(Greenkart_StepDefinition.java:103)
+at ✽.I will see the below details(file:///C:/Capgemini/testingRep/src/main/java/features/greenkart.feature:9)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Exception -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:runnerClass.runner@5890e879]" started-at="2024-07-04T16:28:29 IST" name="writeExtentReport" finished-at="2024-07-04T16:28:29 IST" duration-ms="3" status="FAIL">
-          <exception class="java.lang.NoClassDefFoundError">
-            <message>
-              <![CDATA[gherkin/formatter/Reporter]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NoClassDefFoundError: gherkin/formatter/Reporter
-at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1017)
-at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
-at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:862)
-at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:760)
-at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:681)
-at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
-at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-at com.vimalselvam.cucumber.listener.Reporter.getExtentHtmlReport(Reporter.java:30)
-at com.vimalselvam.cucumber.listener.Reporter.loadXMLConfig(Reporter.java:66)
-at runnerClass.runner.writeExtentReport(runner.java:20)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:390)
-at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:325)
-at org.testng.internal.invokers.TestMethodWorker.invokeAfterClassConfigurations(TestMethodWorker.java:229)
-at org.testng.internal.invokers.TestMethodWorker.invokeAfterClassMethods(TestMethodWorker.java:215)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:131)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:848)
-at org.testng.TestRunner.run(TestRunner.java:621)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
-at org.testng.TestNG.runSuites(TestNG.java:1114)
-at org.testng.TestNG.run(TestNG.java:1082)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.ClassNotFoundException: gherkin.formatter.Reporter
-at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-... 39 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NoClassDefFoundError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- writeExtentReport -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runnerClass.runner@5890e879]" started-at="2024-07-04T16:28:29 IST" name="tearDownClass" finished-at="2024-07-04T16:28:29 IST" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runnerClass.runner@6c4906d3]" started-at="2024-08-03T22:46:28 IST" name="tearDownClass" finished-at="2024-08-03T22:46:29 IST" duration-ms="277" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
